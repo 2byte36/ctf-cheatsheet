@@ -1,5 +1,13 @@
 # OSINT Operator Playbook
 
+## Operational Playbook Router
+
+| If you see | Open playbook | First action |
+|---|---|---|
+| photo asks where/place/coordinates | [Image Geolocation](../../playbooks/osint-geolocation.md) | `exiftool image.jpg && tesseract image.jpg stdout` |
+| domain/infrastructure clue | Use this playbook plus resources | `dig -t txt target.com && whois target.com` |
+| username/social clue | Use this playbook plus source notes | Search exact handle and archive IDs |
+
 ## Mindset
 
 OSINT is clue preservation and corroboration. Extract entities first, search second, verify before submitting. A first search result is a lead, not proof.
@@ -98,4 +106,3 @@ tesseract image.jpg stdout
 - Geolocation/media: [geolocation-and-media.md](../../ctf-osint/geolocation-and-media.md)
 - Social media: [social-media.md](../../ctf-osint/social-media.md)
 - Web/DNS/archive: [web-and-dns.md](../../ctf-osint/web-and-dns.md)
-

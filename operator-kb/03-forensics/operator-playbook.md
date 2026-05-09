@@ -1,5 +1,16 @@
 # Forensics Operator Playbook
 
+## Operational Playbook Router
+
+| If you see | Open playbook | First action |
+|---|---|---|
+| PCAP with HTTP/web objects | [PCAP HTTP](../../playbooks/forensic-pcap-http.md) | `bash ../../scripts/forensics/pcap_http_extract.sh capture.pcap extracts` |
+| PCAP with many DNS queries | [PCAP DNS](../../playbooks/forensic-pcap-dns.md) | `tshark -r capture.pcap -Y 'dns.qry.name' -T fields -e dns.qry.name` |
+| Embedded files/wrong extension | [File Carving](../../playbooks/forensic-file-carving.md) | `bash ../../scripts/forensics/magic_scan.sh artifact` |
+| Suspicious image/stego | [Image Stego](../../playbooks/forensic-steg-image.md) | `zsteg -a image.png` |
+| Memory dump | [Memory Volatility](../../playbooks/forensic-memory-volatility.md) | `vol3 -f memory.dmp windows.info` |
+| Windows artifacts | [Windows Artifacts](../../playbooks/forensic-windows-artifacts.md) | `rg -a -i 'flag|powershell|cmd.exe' .` |
+
 ## Mindset
 
 Forensics challenges are evidence reconstruction. Preserve inputs, identify artifact types, extract deterministically, and correlate facts. Unknown executables and scripts are suspicious until proven otherwise.
@@ -122,4 +133,3 @@ sqlite3 History "select datetime(last_visit_time/1000000-11644473600,'unixepoch'
 - Windows/Linux: [windows.md](../../ctf-forensic/ctf-forensics/windows.md), [linux-forensics.md](../../ctf-forensic/ctf-forensics/linux-forensics.md)
 - Signals/peripherals: [signals-and-hardware.md](../../ctf-forensic/ctf-forensics/signals-and-hardware.md), [peripheral-capture.md](../../ctf-forensic/ctf-forensics/peripheral-capture.md)
 - Malware-style: [c2-and-protocols.md](../../ctf-forensic/ctf-malware/c2-and-protocols.md)
-

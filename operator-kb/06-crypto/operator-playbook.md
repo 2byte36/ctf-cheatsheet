@@ -1,5 +1,14 @@
 # Crypto Operator Playbook
 
+## Operational Playbook Router
+
+| If you see | Open playbook | First action |
+|---|---|---|
+| RSA `n,e,c` | [RSA](../../playbooks/crypto-rsa.md) | `python3 ../../scripts/crypto/rsa_common_checks.py --n N --e E --c C` |
+| XOR/keystream/reused key | [XOR](../../playbooks/crypto-xor.md) | `python3 ../../scripts/reverse/xor_bruteforce.py HEX` |
+| `hash(secret + msg)` MAC | [Hash Length Extension](../../playbooks/crypto-hash-extension.md) | `hash_extender -f sha256 -s SIG -d MSG -a APPEND -l 16` |
+| known plaintext against XOR | [xor_known_plaintext.py](../../scripts/crypto/xor_known_plaintext.py) | `python3 ../../scripts/crypto/xor_known_plaintext.py --ct HEX --known 'flag{'` |
+
 ## Mindset
 
 Crypto CTFs are usually misuse challenges. Identify the primitive, the parameters, and the attacker capability before attacking. Standard AES/RSA/ECC are not broken; bad modes, bad randomness, bad padding, bad signatures, and bad composition are.
@@ -144,4 +153,3 @@ There is no dedicated `ctf-crypto/` source folder yet. This playbook consolidate
 - Lattices
 - Oracles
 - Encoding/compression boundary
-

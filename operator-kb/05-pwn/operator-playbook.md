@@ -1,5 +1,14 @@
 # Pwn Operator Playbook
 
+## Operational Playbook Router
+
+| If you see | Open playbook | First action |
+|---|---|---|
+| no canary, overflow, win function | [ret2win](../../playbooks/pwn-ret2win.md) | `checksec --file=./chall && nm -an ./chall | rg 'win|flag'` |
+| NX enabled, need libc leak | [ret2libc](../../playbooks/pwn-ret2libc.md) | `ROPgadget --binary ./chall | rg 'pop rdi|ret'` |
+| `%p` leaks pointers | [Format String](../../playbooks/pwn-format-string.md) | Send `AAAA.%p.%p.%p.%p` |
+| unknown remote protocol | [pwntools template](../../scripts/pwn/pwntools_remote_template.py) | Fill `HOST`, `PORT`, prompts |
+
 ## Mindset
 
 Pwn is primitive engineering:
@@ -157,4 +166,3 @@ Check tcache behavior, safe-linking, unsorted bin leaks, stdout/FILE targets, ho
 - Kernel: [kernel.md](../../ctf-pwn/kernel.md), [kernel-bypass.md](../../ctf-pwn/kernel-bypass.md)
 - Sandbox: [sandbox-escape.md](../../ctf-pwn/sandbox-escape.md)
 - Advanced: [advanced-exploits.md](../../ctf-pwn/advanced-exploits.md)
-

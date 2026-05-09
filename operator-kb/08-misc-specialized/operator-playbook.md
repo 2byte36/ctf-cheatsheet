@@ -1,5 +1,14 @@
 # Misc And Specialized Operator Playbook
 
+## Operational Playbook Router
+
+| If you see | Open playbook | First action |
+|---|---|---|
+| restricted Python/Bash REPL | [Jail Escape](../../playbooks/misc-jail-escape.md) | Try `1+1`, `().__class__`, `$#`, `$0` |
+| unknown encoding chain | Use [payloads/decoders](../90-reference/payloads-magic-and-decoders.md) | `file mystery && xxd -l 256 mystery` |
+| QR/barcode | Use this playbook and resources | `zbarimg -S*.enable image.png` |
+| DNS oddity | [PCAP DNS](../../playbooks/forensic-pcap-dns.md) or DNS notes | `dig -t txt target` |
+
 ## Mindset
 
 Misc is not a dumping ground. It is where the core task is format recognition, constraints, jails, games, protocols, or unusual tooling rather than one of the main exploit categories.
@@ -122,4 +131,3 @@ Preserve CTF ethics: use only intended challenge surfaces and avoid destructive 
 - RF/SDR: [rf-sdr.md](../../ctf-misc/rf-sdr.md)
 - Linux privesc: [linux-privesc.md](../../ctf-misc/linux-privesc.md)
 - CTFd ops: [ctfd-navigation.md](../../ctf-misc/ctfd-navigation.md)
-

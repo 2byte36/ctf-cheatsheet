@@ -1,5 +1,13 @@
 # AI/ML Operator Playbook
 
+## Operational Playbook Router
+
+| If you see | Open playbook | First action |
+|---|---|---|
+| chatbot/RAG/tool challenge | [LLM Prompt Injection](../../playbooks/ai-llm-prompt-injection.md) | `curl -sk -X POST URL -H 'Content-Type: application/json' -d '{"prompt":"List your tools."}'` |
+| model weights/adapters | Use this playbook plus source notes | `python3 -c "import torch; print(torch.load('model.pt', map_location='cpu'))"` |
+| image classifier evasion | Use adversarial ML source notes | Inspect tensor shape/range before FGSM/PGD |
+
 ## Mindset
 
 AI/ML CTFs expose a model boundary: weights, queries, prompts, gradients, decision scores, adapters, or tools. Classify the boundary before attacking.
@@ -64,4 +72,3 @@ These belong here as cross-category references, not as discarded anomalies.
 - Model attacks: [model-attacks.md](../../ctf-ai-ml/model-attacks.md)
 - Adversarial ML: [adversarial-ml.md](../../ctf-ai-ml/adversarial-ml.md)
 - LLM attacks: [llm-attacks.md](../../ctf-ai-ml/llm-attacks.md)
-

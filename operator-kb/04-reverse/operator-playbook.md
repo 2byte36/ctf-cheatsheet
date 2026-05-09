@@ -1,5 +1,15 @@
 # Reverse Engineering Operator Playbook
 
+## Operational Playbook Router
+
+| If you see | Open playbook | First action |
+|---|---|---|
+| ELF/PE asks for password or flag | [Flag Checker](../../playbooks/reverse-flag-checker.md) | `strings -a -n 5 ./chall | rg -i 'flag|correct|wrong'` |
+| Python bytecode/PyInstaller/marshal | [Python PYC](../../playbooks/reverse-python-pyc.md) | `python3 -m dis chall.pyc` |
+| Android APK/mobile app | [Android APK](../../playbooks/reverse-android-apk.md) | `jadx -d jadx_out app.apk` |
+| XOR-looking constants | [Crypto XOR](../../playbooks/crypto-xor.md) | `python3 ../../scripts/reverse/xor_bruteforce.py HEX` |
+| Path constraints too complex | Use [angr template](../../scripts/reverse/angr_template.py) | Fill `FIND_ADDR` and `AVOID_ADDR` |
+
 ## Mindset
 
 Reverse engineering CTFs usually hide a validation relation. Recover that relation. You do not need to understand every function.
@@ -136,4 +146,3 @@ for k in range(256):
 - Anti-analysis: [anti-analysis.md](../../ctf-reverse/anti-analysis.md)
 - Patterns: [patterns.md](../../ctf-reverse/patterns.md), [patterns-ctf.md](../../ctf-reverse/patterns-ctf.md)
 - Languages/platforms: [languages.md](../../ctf-reverse/languages.md), [languages-platforms.md](../../ctf-reverse/languages-platforms.md), [platforms.md](../../ctf-reverse/platforms.md)
-

